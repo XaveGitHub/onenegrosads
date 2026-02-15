@@ -16,7 +16,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 
-import { ModeToggle } from "@/components/mode-toggle"
+import { ThemeToggleButton } from "@/components/ThemeToggleButton"
 
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
@@ -177,7 +177,7 @@ export function Navbar() {
         </div>
 
         <div className="hidden md:flex items-center gap-4">
-          <ModeToggle />
+          <ThemeToggleButton />
           <Button asChild className="font-semibold shadow-md hover:shadow-lg transition-all">
            <Link to="/contact">Get a Quote</Link>
           </Button>
@@ -185,7 +185,7 @@ export function Navbar() {
 
         {/* Mobile Navigation */}
         <div className="flex items-center gap-4 md:hidden">
-          <ModeToggle />
+          <ThemeToggleButton />
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="md:hidden">

@@ -4,7 +4,7 @@ import { TanStackDevtools } from '@tanstack/react-devtools'
 
 import { Navbar } from '../components/layout/Navbar'
 import { Footer } from '../components/layout/Footer'
-import { ThemeProvider } from '../components/theme-provider'
+import { ThemeProvider } from 'next-themes'
 import { Toaster } from "@/components/ui/sonner"
 
 import appCss from '../styles.css?url'
@@ -49,6 +49,15 @@ export const Route = createRootRoute({
   }),
 
   shellComponent: RootDocument,
+  notFoundComponent: () => (
+    <div className="flex flex-col items-center justify-center min-h-[50vh] gap-4">
+      <h1 className="text-4xl font-bold">404</h1>
+      <p className="text-muted-foreground">Page not found</p>
+      <a href="/" className="text-primary hover:underline">
+        Go back home
+      </a>
+    </div>
+  ),
 })
 
 import { JsonLd } from '@/components/seo/JsonLd'
@@ -108,7 +117,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <JsonLd data={businessData} />
       </head>
       <body>
-        <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="flex min-h-screen flex-col font-sans antialiased">
             <Navbar />
             <main className="flex-1">{children}</main>
